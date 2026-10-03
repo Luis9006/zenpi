@@ -130,7 +130,7 @@ function Nav() {
           }}
             onMouseEnter={e => { e.target.style.background = colors.purpleLight; e.target.style.transform = "translateY(-1px)"; }}
             onMouseLeave={e => { e.target.style.background = colors.purple; e.target.style.transform = "translateY(0)"; }}>
-            Pedir demo
+            Hablemos
           </a>
         </div>
 
@@ -154,7 +154,7 @@ function Nav() {
             display: "block", background: colors.purple, color: "#fff", padding: "12px 20px",
             borderRadius: 8, textDecoration: "none", fontSize: 15, fontWeight: 600,
             textAlign: "center", marginTop: 16,
-          }}>Pedir demo</a>
+          }}>Hablemos</a>
         </div>
       )}
     </nav>
@@ -181,21 +181,21 @@ function Hero() {
           animation: "pulse 3s ease-in-out infinite",
         }}>
           <span style={{ width: 6, height: 6, background: colors.mint, borderRadius: "50%", display: "inline-block" }} />
-          <span style={{ fontSize: 13, color: colors.purpleLight, fontWeight: 500 }}>IA aplicada para tu negocio</span>
+          <span style={{ fontSize: 13, color: colors.purpleLight, fontWeight: 500 }}>IA clara para negocios que quieren crecer</span>
         </div>
 
         <h1 style={{
           fontSize: "clamp(38px, 7vw, 72px)", fontWeight: 800, lineHeight: 1.1,
           marginBottom: 24, letterSpacing: "-2px",
         }}>
-          Tu negocio trabajando{" "}
+          Haz que tu negocio funcione mejor{" "}
           <span style={{ background: `linear-gradient(135deg, ${colors.purple}, ${colors.mint})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-            solo, mientras tú creces
+            en digital
           </span>
         </h1>
 
         <p style={{ fontSize: "clamp(16px, 2.5vw, 20px)", color: colors.textMuted, marginBottom: 40, maxWidth: 560, margin: "0 auto 40px", lineHeight: 1.7 }}>
-          Sitios web, chatbots y automatizaciones con IA para emprendedores que quieren vender sin complicaciones.
+          Creamos sitios web, chatbots y automatizaciones sencillas para captar oportunidades, responder más rápido y organizar mejor el seguimiento, sin complicaciones técnicas.
         </p>
 
         <div style={{ display: "flex", gap: 16, justifyContent: "center", flexWrap: "wrap" }}>
@@ -208,7 +208,7 @@ function Hero() {
           }}
             onMouseEnter={e => { e.target.style.transform = "translateY(-2px)"; e.target.style.boxShadow = "0 8px 32px rgba(123,92,245,0.5)"; }}
             onMouseLeave={e => { e.target.style.transform = "translateY(0)"; e.target.style.boxShadow = "0 4px 24px rgba(123,92,245,0.4)"; }}>
-            Pedir demo gratis →
+            Cuéntanos tu proyecto →
           </a>
           <a href="#servicios" style={{
             background: "transparent", color: colors.text,
@@ -218,12 +218,12 @@ function Hero() {
           }}
             onMouseEnter={e => { e.target.style.borderColor = colors.purpleLight; e.target.style.color = colors.purpleLight; }}
             onMouseLeave={e => { e.target.style.borderColor = colors.cardBorder; e.target.style.color = colors.text; }}>
-            Ver paquetes
+            Ver servicios
           </a>
         </div>
 
         <div style={{ display: "flex", gap: 32, justifyContent: "center", marginTop: 56, flexWrap: "wrap" }}>
-          {[["+50", "negocios digitalizados"], ["48h", "tiempo de entrega"], ["3 paquetes", "para cada etapa"]].map(([n, l]) => (
+          {[["Sitios web", "modernos y funcionales"], ["Chatbots", "para atender y captar"], ["Automatización", "simple y útil"]].map(([n, l]) => (
             <div key={n} style={{ textAlign: "center" }}>
               <div style={{ fontSize: 26, fontWeight: 800, color: colors.purpleLight }}>{n}</div>
               <div style={{ fontSize: 13, color: colors.textMuted }}>{l}</div>
@@ -252,7 +252,7 @@ function QueEs() {
             No somos solo diseñadores
           </h2>
           <p style={{ fontSize: 18, color: colors.textMuted, maxWidth: 520, margin: "0 auto" }}>
-            Somos constructores de sistemas simples que trabajan por ti — incluso cuando duermes.
+            Construimos sistemas digitales simples para captar, responder y automatizar tareas mientras tú te enfocas en hacer crecer tu negocio.
           </p>
         </AnimatedSection>
 
@@ -282,17 +282,17 @@ function QueEs() {
 function Servicios() {
   const paquetes = [
     {
-      name: "Zenpi Start", price: "$250", tag: null,
+      name: "Zenpi Start", price: "USD 250", tag: null,
       desc: "Para emprendedores que quieren lanzar rápido y bien.",
-      features: ["Landing de 1 página", "Chatbot básico de captura", "Formulario → email automático", "Guía de uso incluida", "Entrega en 48–72h"],
+      features: ["Landing de 1 página", "Chatbot básico de captura", "Formulario → email automático", "Guía de uso incluida", "Cronograma acordado antes de iniciar"],
     },
     {
-      name: "Zenpi Web", price: "$450–$600", tag: "Más popular",
+      name: "Zenpi Web", price: "USD 450–600", tag: "Más popular",
       desc: "Para negocios listos para convertir visitas en clientes.",
       features: ["Sitio completo hasta 5 secciones", "Chatbot personalizado (FAQ o captación)", "Automatización de seguimiento", "Agendamiento integrado", "Soporte 15 días post entrega"],
     },
     {
-      name: "Zenpi Flow", price: "$750–$900", tag: null,
+      name: "Zenpi Flow", price: "USD 750–900", tag: null,
       desc: "Para negocios que quieren escalar con sistemas completos.",
       features: ["Web + chatbot + embudo completo", "Email de bienvenida + agendamiento", "Integración con CRM (HubSpot / Google Sheets)", "SEO básico optimizado", "Soporte 30 días post entrega"],
     },
@@ -306,7 +306,7 @@ function Servicios() {
           <h2 style={{ fontSize: "clamp(28px, 5vw, 48px)", fontWeight: 800, letterSpacing: "-1px", marginBottom: 16 }}>
             Elige tu punto de partida
           </h2>
-          <p style={{ fontSize: 18, color: colors.textMuted }}>Sin letra pequeña. Sin costos ocultos.</p>
+          <p style={{ fontSize: 18, color: colors.textMuted }}>Soluciones claras según la etapa de tu negocio.</p>
         </AnimatedSection>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 24 }}>
@@ -383,7 +383,7 @@ function Metodo() {
             El Método Zenpi
           </h2>
           <p style={{ fontSize: 18, color: colors.textMuted, maxWidth: 480, margin: "0 auto" }}>
-            Cinco etapas para pasar de "tengo una idea" a "tengo un sistema que vende".
+            Cinco etapas para pasar de una idea a un sistema digital claro y funcional.
           </p>
         </AnimatedSection>
 
@@ -425,12 +425,12 @@ function FAQ() {
   const [open, setOpen] = useState(null);
   const faqs = [
     { q: "¿Necesito saber de tecnología para usar lo que construyen?", a: "No. Todo lo que entregamos viene con acceso simplificado, guía grabada o PDF, y soporte. Si puedes usar WhatsApp, puedes usar lo que hacemos." },
-    { q: "¿Cuánto tiempo tarda la entrega?", a: "Zenpi Start: 48–72 horas. Zenpi Web: 5–7 días hábiles. Zenpi Flow: 10–14 días hábiles. Los tiempos dependen de que nos compartas el brief completo al inicio." },
+    { q: "¿Cuánto tiempo tarda la entrega?", a: "El tiempo depende del paquete, el alcance y la entrega de textos, accesos y materiales. Antes de comenzar acordamos un cronograma claro para tu proyecto." },
     { q: "¿Qué pasa si quiero cambios después de la entrega?", a: "Cada paquete incluye un período de soporte (15 o 30 días). Durante ese tiempo, cambios menores son sin costo. Para cambios más grandes o proyectos nuevos, lo cotizamos." },
     { q: "¿Trabajan con cualquier tipo de negocio?", a: "Trabajamos mejor con emprendedores y negocios pequeños que están listos para digitalizar o escalar. Si tienes una meta clara, nosotros construimos el sistema." },
-    { q: "¿Los chatbots entienden preguntas en español?", a: "Sí. Los chatbots que configuramos están entrenados en español y personalizados con la información de tu negocio. Pueden responder FAQs, capturar datos y agendar citas." },
+    { q: "¿Los chatbots funcionan en español?", a: "Sí. Los configuramos en español y con la información de tu negocio para responder preguntas frecuentes, capturar datos o facilitar el agendamiento, según el alcance acordado." },
     { q: "¿Qué incluye el soporte post entrega?", a: "Respuesta por correo o WhatsApp en horario hábil. Ajustes menores al chatbot, textos o flujos. Orientación para que uses el sistema con total autonomía." },
-    { q: "¿Puedo empezar con el paquete básico y luego subir?", a: "Absolutamente. Muchos clientes empiezan con Zenpi Start para validar, y luego escalan a Web o Flow. Diseñamos todo pensando en esa continuidad." },
+    { q: "¿Puedo empezar con el paquete básico y luego ampliar?", a: "Sí. Puedes comenzar con Zenpi Start para validar tu presencia digital y después ampliar el sistema con una web completa, automatizaciones o integraciones." },
     { q: "¿Hacen integraciones con herramientas que ya uso?", a: "Sí, especialmente en Zenpi Flow. Integramos con HubSpot, Google Sheets, Calendly, WhatsApp Business, y más. Cuéntanos tu stack y lo evaluamos." },
   ];
 
@@ -512,7 +512,7 @@ function Contacto() {
         <div style={{ fontSize: 64, marginBottom: 24 }}>🎉</div>
         <h2 style={{ fontSize: 32, fontWeight: 800, marginBottom: 12 }}>¡Mensaje enviado!</h2>
         <p style={{ fontSize: 17, color: colors.textMuted, lineHeight: 1.7 }}>
-          Gracias, <strong style={{ color: colors.purpleLight }}>{form.nombre}</strong>. Nos pondremos en contacto contigo en menos de 24 horas.
+          Gracias, <strong style={{ color: colors.purpleLight }}>{form.nombre}</strong>. Nos pondremos en contacto contigo lo antes posible.
         </p>
       </div>
     </section>
@@ -527,13 +527,13 @@ function Contacto() {
             Hablemos de tu proyecto
           </h2>
           <p style={{ fontSize: 16, color: colors.textMuted, lineHeight: 1.75, marginBottom: 36 }}>
-            Cuéntanos qué quieres lograr. En menos de 24 horas te respondemos con un plan claro.
+            Cuéntanos qué quieres lograr. Revisaremos tu necesidad y te orientaremos sobre el mejor punto de partida.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
             {[
-              ["📍", "Demo gratuita incluida", "Sin compromiso ni tecnicismos"],
-              ["⚡", "Respuesta en menos de 24h", "Respondemos rápido, siempre"],
-              ["🔒", "Tu información es tuya", "Sin spam, sin venta de datos"],
+              ["💬", "Primera conversación sin compromiso", "Entendemos tu necesidad antes de recomendar una solución"],
+              ["⚡", "Proceso claro", "Alcance, tiempos y próximos pasos definidos"],
+              ["🔒", "Tu información es tuya", "Sin spam ni venta de datos"],
             ].map(([icon, title, sub]) => (
               <div key={title} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
                 <span style={{ fontSize: 22, marginTop: 2 }}>{icon}</span>
@@ -572,8 +572,8 @@ function Contacto() {
                 onBlur={e => e.target.style.borderColor = colors.cardBorder} />
             </div>
             <div>
-              <label style={labelStyle}>¿Qué te gustaría automatizar? *</label>
-              <textarea placeholder="Ej: responder preguntas frecuentes, agendar citas, capturar leads..." value={form.automatizar} style={{ ...inputStyle("automatizar"), resize: "vertical", minHeight: 100 }}
+              <label style={labelStyle}>¿Qué te gustaría mejorar o automatizar? *</label>
+              <textarea placeholder="Ej: mejorar mi página, captar contactos, responder preguntas o agendar citas..." value={form.automatizar} style={{ ...inputStyle("automatizar"), resize: "vertical", minHeight: 100 }}
                 onChange={e => { setForm({ ...form, automatizar: e.target.value }); setErrors({ ...errors, automatizar: "" }); }}
                 onFocus={e => e.target.style.borderColor = colors.purple}
                 onBlur={e => e.target.style.borderColor = errors.automatizar ? "#F87171" : colors.cardBorder} />
@@ -621,7 +621,7 @@ function Footer() {
               zen<span style={{ color: colors.mint }}>pi</span>
             </span>
             <p style={{ fontSize: 14, color: colors.textMuted, marginTop: 12, lineHeight: 1.7, maxWidth: 220 }}>
-              IA aplicada para emprendedores que quieren crecer sin complicaciones.
+              Soluciones digitales claras para emprendedores y pequeños negocios.
             </p>
           </div>
           <div>
@@ -653,7 +653,7 @@ function Footer() {
 
         <div style={{ borderTop: `1px solid ${colors.cardBorder}`, paddingTop: 28, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 12 }}>
           <p style={{ fontSize: 13, color: colors.textMuted }}>© {year} Zenpi. Todos los derechos reservados.</p>
-          <p style={{ fontSize: 13, color: colors.textMuted }}>Hecho con IA · Para negocios que piensan en grande</p>
+          <p style={{ fontSize: 13, color: colors.textMuted }}>IA que piensa. Sistemas que fluyen.</p>
         </div>
       </div>
     </footer>
