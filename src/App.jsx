@@ -772,9 +772,9 @@ function ComoTrabajamos() {
       <div style={{ maxWidth: 780, margin: "0 auto", textAlign: "center" }}>
         <AnimatedSection>
           <p style={{ fontSize: 13, color: colors.mint, fontWeight: 600, letterSpacing: 2, textTransform: "uppercase", marginBottom: 12 }}>Cómo trabajamos</p>
-          <h2 style={{ fontSize: "clamp(24px, 4vw, 40px)", fontWeight: 800, letterSpacing: "-1px", marginBottom: 20 }}>
-            No empezamos recomendando herramientas.{" "}
-            <span style={{ background: `linear-gradient(135deg, ${colors.purple}, ${colors.mint})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+          <h2 style={{ fontSize: "clamp(24px, 4vw, 40px)", fontWeight: 800, letterSpacing: "-1px", marginBottom: 20, lineHeight: 1.2 }}>
+            <span style={{ display: "block", color: colors.text }}>No empezamos recomendando herramientas.</span>
+            <span style={{ display: "block", background: `linear-gradient(135deg, ${colors.purple}, ${colors.mint})`, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               Empezamos entendiendo el problema.
             </span>
           </h2>
