@@ -458,7 +458,7 @@ function Servicios({ market, setMarket }) {
     {
       key: "web",
       name: "Web & Conversión",
-      tag: "Más solicitado",
+      tag: "Buen punto de partida",
       priceNote: "Landing pages y experiencias digitales orientadas a conversión.",
       desc: "Para negocios que necesitan convertir mejor la atención que ya están generando.",
       features: [
@@ -967,10 +967,17 @@ function FAQ() {
 
 // ─── CONTACTO ──────────────────────────────────────────────────────────────
 function Contacto() {
-  const [form, setForm] = useState({ nombre: "", email: "", sitio: "", servicio: "", mejorar: "", contacto: "" });
+  const [form, setForm] = useState({ nombre: "", email: "", telefono: "", sitio: "", servicio: "", mejorar: "", contacto: "", acepta: false });
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [waUrl, setWaUrl] = useState("");
+
+  const servicioLabels = {
+    growth: "Growth Marketing", web: "Web & Conversión", automatizacion: "Automatización & IA",
+    combinar: "Combinar varias soluciones", noseguro: "No estoy seguro",
+  };
+  const contactoLabels = { email: "Email", whatsapp: "WhatsApp", videollamada: "Videollamada" };
+  const telefonoObligatorio = form.contacto === "whatsapp";
 
   const validate = () => {
     const e = {};
@@ -978,6 +985,11 @@ function Contacto() {
     if (!form.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) e.email = "Email válido, por favor";
     if (!form.mejorar.trim()) e.mejorar = "Cuéntanos qué quieres mejorar";
     if (!form.contacto) e.contacto = "Selecciona cómo prefieres que te contactemos";
+    const tel = form.telefono.trim();
+    const digitos = tel.replace(/\D/g, "");
+    if (telefonoObligatorio && !tel) e.telefono = "Necesitamos tu número para escribirte por WhatsApp";
+    else if (tel && (!/^[+\d\s\-()]+$/.test(tel) || digitos.length < 7 || digitos.length > 15)) e.telefono = "Revisa el número (incluye el indicativo, ej: +57)";
+    if (!form.acepta) e.acepta = "Necesitamos tu autorización para responderte";
     return e;
   };
 
@@ -985,8 +997,23 @@ function Contacto() {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
-    setLoading(true);
-    setTimeout(() => { setLoading(false); setSent(true); }, 1200);
+    // Mientras el formulario no esté conectado a un CRM, la solicitud se envía por WhatsApp.
+    // El visitante ve el mensaje armado y decide enviarlo.
+    const lineas = [
+      "Hola Zenpi, les escribo desde el formulario de la web.",
+      `Nombre: ${form.nombre.trim()}`,
+      `Email: ${form.email.trim()}`,
+      form.telefono.trim() && `WhatsApp / teléfono: ${form.telefono.trim()}`,
+      form.sitio.trim() && `Sitio web: ${form.sitio.trim()}`,
+      form.servicio && `Necesito ayuda con: ${servicioLabels[form.servicio]}`,
+      `Quiero mejorar: ${form.mejorar.trim()}`,
+      `Prefiero que me contacten por: ${contactoLabels[form.contacto]}`,
+    ].filter(Boolean);
+    const url = `https://wa.me/573180223809?text=${encodeURIComponent(lineas.join("\n"))}`;
+    setWaUrl(url);
+    setSent(true);
+    const w = window.open(url, "_blank");
+    if (w) w.opener = null; else window.location.href = url;
   };
 
   const inputStyle = (field) => ({
@@ -1000,11 +1027,16 @@ function Contacto() {
   if (sent) return (
     <section id="contacto" style={{ padding: "100px 5%", background: colors.bgAlt, textAlign: "center" }}>
       <div style={{ maxWidth: 500, margin: "0 auto", animation: "fadeIn 0.5s ease" }}>
-        <div style={{ fontSize: 64, marginBottom: 24 }}>🎉</div>
-        <h2 style={{ fontSize: 32, fontWeight: 800, marginBottom: 12 }}>¡Mensaje enviado!</h2>
-        <p style={{ fontSize: 17, color: colors.textMuted, lineHeight: 1.7 }}>
-          Gracias, <strong style={{ color: colors.purpleLight }}>{form.nombre}</strong>. Nos pondremos en contacto contigo en menos de 24 horas.
+        <div style={{ fontSize: 64, marginBottom: 24 }}>💬</div>
+        <h2 style={{ fontSize: 32, fontWeight: 800, marginBottom: 12 }}>¡Casi listo!</h2>
+        <p style={{ fontSize: 17, color: colors.textMuted, lineHeight: 1.7, marginBottom: 28 }}>
+          Gracias, <strong style={{ color: colors.purpleLight }}>{form.nombre}</strong>. Abrimos WhatsApp con tu solicitud lista: solo falta que envíes el mensaje para que nos llegue.
         </p>
+        <a href={waUrl} target="_blank" rel="noopener noreferrer" style={{
+          display: "inline-block", background: `linear-gradient(135deg, ${colors.purple}, #5B3FD4)`,
+          color: "#fff", padding: "14px 28px", borderRadius: 10, textDecoration: "none",
+          fontSize: 15, fontWeight: 700, boxShadow: "0 4px 20px rgba(123,92,245,0.35)",
+        }}>Abrir WhatsApp de nuevo →</a>
       </div>
     </section>
   );
@@ -1056,6 +1088,14 @@ function Contacto() {
               {errors.email && <p style={{ fontSize: 12, color: "#F87171", marginTop: 4 }}>{errors.email}</p>}
             </div>
             <div>
+              <label style={labelStyle}>WhatsApp o teléfono {telefonoObligatorio ? "*" : "(opcional)"}</label>
+              <input type="tel" inputMode="tel" autoComplete="tel" placeholder="+57 300 123 4567" value={form.telefono} style={inputStyle("telefono")}
+                onChange={e => { setForm({ ...form, telefono: e.target.value }); setErrors({ ...errors, telefono: "" }); }}
+                onFocus={e => e.target.style.borderColor = colors.purple}
+                onBlur={e => e.target.style.borderColor = errors.telefono ? "#F87171" : colors.cardBorder} />
+              {errors.telefono && <p style={{ fontSize: 12, color: "#F87171", marginTop: 4 }}>{errors.telefono}</p>}
+            </div>
+            <div>
               <label style={labelStyle}>¿Tienes un sitio web actualmente?</label>
               <input type="text" placeholder="URL o 'No tengo'" value={form.sitio} style={inputStyle("sitio")}
                 onChange={e => setForm({ ...form, sitio: e.target.value })}
@@ -1097,16 +1137,28 @@ function Contacto() {
               </select>
               {errors.contacto && <p style={{ fontSize: 12, color: "#F87171", marginTop: 4 }}>{errors.contacto}</p>}
             </div>
-            <button type="submit" disabled={loading} style={{
+            <div>
+              <label style={{ display: "flex", gap: 10, alignItems: "flex-start", cursor: "pointer", fontSize: 13, color: colors.textMuted, lineHeight: 1.6 }}>
+                <input type="checkbox" checked={form.acepta}
+                  onChange={e => { setForm({ ...form, acepta: e.target.checked }); setErrors({ ...errors, acepta: "" }); }}
+                  style={{ width: 18, height: 18, marginTop: 2, flexShrink: 0, accentColor: colors.purple, cursor: "pointer" }} />
+                <span>Autorizo a Zenpi a usar mis datos solo para responder esta solicitud, conforme a la Ley 1581 de 2012. *</span>
+              </label>
+              {errors.acepta && <p style={{ fontSize: 12, color: "#F87171", marginTop: 4 }}>{errors.acepta}</p>}
+            </div>
+            <button type="submit" style={{
               background: `linear-gradient(135deg, ${colors.purple}, #5B3FD4)`,
               color: "#fff", border: "none", padding: "15px 28px", borderRadius: 10,
-              fontSize: 16, fontWeight: 700, cursor: loading ? "wait" : "pointer",
+              fontSize: 16, fontWeight: 700, cursor: "pointer",
               boxShadow: "0 4px 20px rgba(123,92,245,0.35)", transition: "all 0.25s", marginTop: 4,
             }}
-              onMouseEnter={e => { if (!loading) { e.target.style.transform = "translateY(-2px)"; e.target.style.boxShadow = "0 8px 28px rgba(123,92,245,0.5)"; } }}
+              onMouseEnter={e => { e.target.style.transform = "translateY(-2px)"; e.target.style.boxShadow = "0 8px 28px rgba(123,92,245,0.5)"; }}
               onMouseLeave={e => { e.target.style.transform = "translateY(0)"; e.target.style.boxShadow = "0 4px 20px rgba(123,92,245,0.35)"; }}>
-              {loading ? "Enviando..." : "Enviar mensaje →"}
+              Continuar en WhatsApp →
             </button>
+            <p style={{ fontSize: 12, color: colors.textMuted, textAlign: "center", marginTop: -8 }}>
+              Se abrirá WhatsApp con tu solicitud lista; solo tienes que enviarla.
+            </p>
           </form>
         </AnimatedSection>
       </div>
