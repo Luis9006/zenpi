@@ -58,6 +58,10 @@ const styles = {
       .growth-system-grid { grid-template-columns: 1fr !important; }
       .growth-system-price { text-align: left !important; min-width: unset !important; }
     }
+    @media (max-width: 1024px) {
+      .wa-solution-grid { grid-template-columns: 1fr !important; }
+      .wa-solution-cta { display: block !important; width: 100% !important; white-space: normal !important; }
+    }
     @media (prefers-reduced-motion: reduce) {
       .fade-up { opacity: 1; transform: none; transition: none; }
       * { animation: none !important; }
@@ -584,6 +588,69 @@ function Servicios({ market, setMarket }) {
             </AnimatedSection>
           ))}
         </div>
+
+        {/* Solución destacada dentro de Automatización & IA */}
+        <AnimatedSection style={{ marginTop: 24 }}>
+          <div className="growth-system-grid wa-solution-grid" style={{
+            background: "linear-gradient(135deg, rgba(0,212,170,0.07), rgba(26,26,46,0.85))",
+            border: "1px solid rgba(0,212,170,0.28)",
+            borderRadius: 16, padding: "28px 32px",
+            display: "grid", gridTemplateColumns: "1fr auto",
+            gap: "20px 40px", alignItems: "center",
+          }}>
+            <div>
+              <span style={{ display: "block", fontSize: 12, fontWeight: 700, color: colors.mint, letterSpacing: 1.5, textTransform: "uppercase", marginBottom: 10 }}>
+                Solución de Automatización & IA
+              </span>
+              <h3 style={{ fontSize: "clamp(20px, 2.6vw, 24px)", fontWeight: 800, color: colors.text, marginBottom: 10, letterSpacing: "-0.5px" }}>
+                Atención y seguimiento por WhatsApp
+              </h3>
+              <p style={{ fontSize: 15, color: colors.textMuted, lineHeight: 1.7, marginBottom: 16, maxWidth: 620 }}>
+                Automatiza consultas frecuentes, organiza nuevos contactos y facilita el agendamiento para que tu negocio pueda dar seguimiento con menos trabajo manual.
+              </p>
+              <p style={{ fontSize: 13, color: colors.text, fontWeight: 600, marginBottom: 10 }}>Según el alcance, puede incluir:</p>
+              <ul style={{ listStyle: "none", display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 16 }}>
+                {[
+                  "Respuestas a consultas frecuentes",
+                  "Captura y organización de contactos",
+                  "Solicitudes de citas y recordatorios",
+                  "Derivación a una persona cuando sea necesario",
+                ].map(f => (
+                  <li key={f} style={{
+                    display: "flex", alignItems: "center", gap: 6,
+                    background: "rgba(123,92,245,0.1)", border: `1px solid ${colors.cardBorder}`,
+                    borderRadius: 20, padding: "6px 12px", fontSize: 13, color: colors.textMuted, lineHeight: 1.4,
+                  }}>
+                    <span style={{ color: colors.mint, fontWeight: 700, flexShrink: 0 }}>✓</span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <p style={{ fontSize: 13, color: colors.textMuted, lineHeight: 1.6 }}>
+                Primero revisamos tu caso y definimos qué tiene sentido implementar. Puedes contratarla sola o combinarla con Growth Marketing o Web & Conversión.
+              </p>
+            </div>
+            <div className="growth-system-price">
+              <a
+                href={`https://wa.me/573180223809?text=${encodeURIComponent("Hola, quiero conocer cómo Zenpi puede ayudarme a mejorar la atención y el seguimiento de clientes por WhatsApp.")}`}
+                target="_blank" rel="noopener noreferrer"
+                aria-label="Quiero mejorar mi atención por WhatsApp (abre WhatsApp en una pestaña nueva)"
+                className="wa-solution-cta"
+                style={{
+                  display: "inline-block", textAlign: "center",
+                  background: "transparent", color: colors.mint,
+                  border: `1px solid ${colors.mint}`,
+                  padding: "12px 22px", borderRadius: 10,
+                  textDecoration: "none", fontSize: 14, fontWeight: 700,
+                  transition: "all 0.25s", whiteSpace: "nowrap",
+                }}
+                onMouseEnter={e => { e.currentTarget.style.background = "rgba(0,212,170,0.1)"; e.currentTarget.style.transform = "translateY(-1px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.transform = "translateY(0)"; }}>
+                Quiero mejorar mi atención por WhatsApp →
+              </a>
+            </div>
+          </div>
+        </AnimatedSection>
 
         {/* Price note */}
         <AnimatedSection style={{ textAlign: "center", marginTop: 32 }}>
